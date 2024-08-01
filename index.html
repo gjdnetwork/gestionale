@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabella</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -16,33 +20,19 @@
             grid-template-columns: 1fr 1fr;
             height: 100vh;
             width: 100vw;
-            position: relative;
         }
 
         .frame {
             border: 1px solid #ddd;
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 0;
+            display: flex;
+            align-items: stretch;
         }
 
-        .frame1 {
-            grid-row: 1 / 2;
-            grid-column: 1 / 2;
-        }
-
-        .frame2 {
-            grid-row: 1 / 2;
-            grid-column: 2 / 3;
-        }
-
-        .frame3 {
-            grid-row: 2 / 3;
-            grid-column: 1 / 2;
-        }
-
-        .frame4 {
-            grid-row: 2 / 3;
-            grid-column: 2 / 3;
+        .frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .popup-button {
@@ -115,7 +105,7 @@
         </div>
         <div class="frame frame4">
             <iframe src="2/index.html"></iframe>
-            </div>
+        </div>
         <button class="popup-button" onclick="openPopup()">Open Popup</button>
     </div>
 
