@@ -72,8 +72,8 @@
         }
 
         .gjdrp38 {
-            background: #000; /* Sfondo nero per il popup */
-            color: #fff; /* Testo bianco per contrastare con lo sfondo nero */
+            background: #000;
+            color: #fff;
             width: 90%;
             height: 90%;
             padding: 20px;
@@ -94,7 +94,7 @@
             font-size: 24px;
             cursor: pointer;
         }
-        
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
@@ -122,16 +122,16 @@
 <body>
     <div class="container">
         <div class="frame frame1">
-            <iframe src="1/index.html"></iframe>
+            <iframe src="1/index.html" id="frame1"></iframe>
         </div>
         <div class="frame frame2">
-            <iframe src="https://calendar.google.com/calendar/embed?src=76186e5d7f3a57336540e3f7448805bd34b9abeb98506d7400e0ca8bd4b32c6e%40group.calendar.google.com&ctz=UTC"></iframe>
+            <iframe src="https://calendar.google.com/calendar/embed?src=76186e5d7f3a57336540e3f7448805bd34b9abeb98506d7400e0ca8bd4b32c6e%40group.calendar.google.com&ctz=UTC" id="frame2"></iframe>
         </div>
         <div class="frame frame3">
-            <iframe src="3/index.html"></iframe>
+            <iframe src="3/index.html" id="frame3"></iframe>
         </div>
         <div class="frame frame4">
-            <iframe src="5/index.html"></iframe>
+            <iframe src="5/index.html" id="frame4"></iframe>
         </div>
         <button class="popup-button" onclick="openPopup()">Open Popup</button>
     </div>
@@ -141,11 +141,6 @@
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>ALLERTS</h2>
             <p>Ecco tutte le allerte in corso</p>
-
-
-
-
-                
         </div>
     </div>
 
@@ -159,6 +154,15 @@
             const popup = document.getElementById('popup');
             popup.classList.remove('show');
         }
+
+        function reloadIframes() {
+            document.getElementById('frame1').src += '';
+            document.getElementById('frame2').src += '';
+            document.getElementById('frame3').src += '';
+            document.getElementById('frame4').src += '';
+        }
+
+        setInterval(reloadIframes, 30000); // Aggiorna ogni 30 secondi
     </script>
 </body>
 </html>
