@@ -155,14 +155,16 @@
             popup.classList.remove('show');
         }
 
-        function reloadIframes() {
-            document.getElementById('frame1').src += '';
-            document.getElementById('frame2').src += '';
-            document.getElementById('frame3').src += '';
-            document.getElementById('frame4').src += '';
+        function reloadFrame(frameId) {
+            const frame = document.getElementById(frameId);
+            frame.src = frame.src;
         }
 
-        setInterval(reloadIframes, 30000); // Aggiorna ogni 30 secondi
+        // Intervalli di aggiornamento specifici per ciascun frame
+        setInterval(() => reloadFrame('frame1'), 30000); // 30 secondi
+        setInterval(() => reloadFrame('frame2'), 45000); // 45 secondi
+        setInterval(() => reloadFrame('frame3'), 60000); // 60 secondi
+        setInterval(() => reloadFrame('frame4'), 90000); // 90 secondi
     </script>
 </body>
 </html>
