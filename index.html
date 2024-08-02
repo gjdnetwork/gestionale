@@ -25,6 +25,7 @@
         }
 
         .frame {
+            position: relative;
             background-color: #000624;
             border: 1px solid #ddd;
             padding: 0;
@@ -36,6 +37,23 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        .loader {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 24px;
+            height: 24px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none; /* Nascondi di default */
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         .popup-button {
@@ -122,16 +140,20 @@
 <body>
     <div class="container">
         <div class="frame frame1">
-            <iframe src="1/index.html" id="frame1"></iframe>
+            <iframe src="1/index.html" id="frame1" onload="hideLoader('loader1')"></iframe>
+            <div class="loader" id="loader1"></div>
         </div>
         <div class="frame frame2">
-            <iframe src="https://calendar.google.com/calendar/embed?src=76186e5d7f3a57336540e3f7448805bd34b9abeb98506d7400e0ca8bd4b32c6e%40group.calendar.google.com&ctz=UTC" id="frame2"></iframe>
+            <iframe src="https://calendar.google.com/calendar/embed?src=76186e5d7f3a57336540e3f7448805bd34b9abeb98506d7400e0ca8bd4b32c6e%40group.calendar.google.com&ctz=UTC" id="frame2" onload="hideLoader('loader2')"></iframe>
+            <div class="loader" id="loader2"></div>
         </div>
         <div class="frame frame3">
-            <iframe src="3/index.html" id="frame3"></iframe>
+            <iframe src="3/index.html" id="frame3" onload="hideLoader('loader3')"></iframe>
+            <div class="loader" id="loader3"></div>
         </div>
         <div class="frame frame4">
-            <iframe src="5/index.html" id="frame4"></iframe>
+            <iframe src="5/index.html" id="frame4" onload="hideLoader('loader4')"></iframe>
+            <div class="loader" id="loader4"></div>
         </div>
         <button class="popup-button" onclick="openPopup()">Open Popup</button>
     </div>
@@ -155,16 +177,25 @@
             popup.classList.remove('show');
         }
 
-        function reloadFrame(frameId) {
+        function showLoader(loaderId) {
+            document.getElementById(loaderId).style.display = 'block';
+        }
+
+        function hideLoader(loaderId) {
+            document.getElementById(loaderId).style.display = 'none';
+        }
+
+        function reloadFrame(frameId, loaderId) {
             const frame = document.getElementById(frameId);
+            showLoader(loaderId);  // Mostra il loader
             frame.src = frame.src;
         }
 
-        // Intervalli di aggiornamento specifici per ciascun frame
-        setInterval(() => reloadFrame('frame1'), 30000); // 30 secondi
-        setInterval(() => reloadFrame('frame2'), 45000); // 45 secondi
-        setInterval(() => reloadFrame('frame3'), 60000); // 60 secondi
-        setInterval(() => reloadFrame('frame4'), 90000); // 90 secondi
+        // Imposta intervalli di aggiornamento specifici per ciascun frame
+        setInterval(() => reloadFrame('frame1', 'loader1'), 30000); // 30 secondi
+        setInterval(() => reloadFrame('frame2', 'loader2'), 45000); // 45 secondi
+        setInterval(() => reloadFrame('frame3', 'loader3'), 60000); // 60 secondi
+        setInterval(() => reloadFrame('frame4', 'loader4'), 90000); // 90 secondi
     </script>
 </body>
 </html>
